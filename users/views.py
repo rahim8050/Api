@@ -1,8 +1,10 @@
 from rest_framework import viewsets, permissions, status, generics, request
 from rest_framework.decorators import action, api_view
-from rest_framework.permissions import AllowAny
+from rest_framework.permissions import AllowAny, IsAuthenticated, IsAdminUser
+
 from rest_framework.response import Response
 from django.contrib.auth import get_user_model
+
 from rest_framework_simplejwt.tokens import RefreshToken
 from .serializers import UserSerializer, UserCreateSerializer, PasswordChangeSerializer, UserLoginSerializer
 
@@ -12,6 +14,9 @@ User = get_user_model()
 class UserViewSet(viewsets.ModelViewSet):
     queryset = User.objects.all()
     serializer_class = UserSerializer
+    # permission_classes = [IsAdminUser]
+     
+   
 
     def get_serializer_class(self):
         if self.action == 'create':
@@ -28,33 +33,25 @@ class UserViewSet(viewsets.ModelViewSet):
             return [permissions.AllowAny()]
         return [permissions.IsAdminUser()]
 
-    @action(detail=True, methods=['post'], permission_classes=[permissions.IsAuthenticated])
-    def change_password(self, request, pk=None):
-        user = self.get_object()
+    @action(detail=False, methods=['post'], permission_classes=[permissions.IsAuthenticated])
+    def change_password(self, request):
+        user = request.user
         serializer = PasswordChangeSerializer(data=request.data)
 
         if serializer.is_valid():
-            if not user.check_password(serializer.data.get('old_password')):
-                return Response({"old_password": ["Wrong password."]}, status=400)
+            if not user.check_password(serializer.validated_data.get('old_password')):
+                return Response({"old_password": ["Wrong password."]}, status=status.HTTP_400_BAD_REQUEST)
 
-            user.set_password(serializer.data.get('new_password'))
+            user.set_password(serializer.validated_data.get('new_password'))
             user.save()
-            return Response({"status": "password changed"})
-        return Response(serializer.errors, status=400)
+            return Response({"status": "password changed"}, status=status.HTTP_200_OK)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
-
-'''class UserDetailView(generics.RetrieveAPIView):
-    queryset = User.objects.all()
-    serializer_class = UserSerializer
-    lookup_field = 'username_id'
-
-    @api_view(['GET'])
-    def api_root(request):
-        return Response({
-            'users': request.build_absolute_uri('api/users/'),
-            'admin': request.build_absolute_uri('admin/'),
-            'token-auth': request.build_absolute_uri('api/auth/token/login/')
-        })'''
+    @action(detail=False, methods=['delete'], permission_classes=[permissions.IsAuthenticated])
+    def delete_me(self, request):
+        user = request.user
+        user.delete()
+        return Response(status=status.HTTP_204_NO_CONTENT)
 
 
 class LoginView(generics.GenericAPIView):
@@ -77,3 +74,6 @@ class LoginView(generics.GenericAPIView):
                 'email': user.email
             }
         }, status=status.HTTP_200_OK)
+        
+
+       

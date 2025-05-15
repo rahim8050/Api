@@ -3,19 +3,19 @@ A simple RESTful API for creating and managing user data with full CRUD (Create,
 
 Table of Contents
 Features 
-Technologies 
-Installation 
-Configuration 
-API Endpoints 
-Example Usage
-Contributing
-License 
+Technologies 
+Installation 
+Configuration 
+API Endpoints 
+Example Usage
+Contributing
+License 
 
-Create new user accounts.
-Retrieve user details (single user or all users).
-Update existing user information.
-Delete user accounts.
-Input validation and error handling.
+Create new user accounts.
+Retrieve user details (single user or all users).
+Update existing user information.
+Delete user accounts.
+Input validation and error handling.
 
 Technologies
 Language: [ Python]
@@ -30,8 +30,8 @@ Install dependencies:
 pip install djangorestframework-simplejwt
 
 Set up the database:
-Ensure [your database] is running.
-Run migrations 
+Ensure [your database] is running.
+Run migrations 
 Start the server:
 python manage.py runserver
 
