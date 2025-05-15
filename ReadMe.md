@@ -25,10 +25,12 @@ A simple RESTful API for creating and managing user data with full CRUD (Create,
 
 ## Installation
 - Clone the repository:
-```bash https://github.com/rahim8050/API
+```bash 
+    git clone https://github.com/rahim8050/API
 ```
 - Install dependencies:
-``` bash pip install djangorestframework-simplejwt
+``` bash 
+pip install djangorestframework-simplejwt
 ```
 
 Set up the database:
