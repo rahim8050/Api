@@ -13,10 +13,7 @@ User = get_user_model()
 
 class UserViewSet(viewsets.ModelViewSet):
     queryset = User.objects.all()
-    serializer_class = UserSerializer
-    # permission_classes = [IsAdminUser]
-     
-   
+    serializer_class = UserCreateSerializer
 
     def get_serializer_class(self):
         if self.action == 'create':
@@ -30,8 +27,8 @@ class UserViewSet(viewsets.ModelViewSet):
 
     def get_permissions(self):
         if self.action == 'create':
-            return [permissions.AllowAny()]
-        return [permissions.IsAdminUser()]
+            return [AllowAny()]
+        return [IsAuthenticated()]
 
     @action(detail=False, methods=['post'], permission_classes=[permissions.IsAuthenticated])
     def change_password(self, request):
@@ -52,6 +49,27 @@ class UserViewSet(viewsets.ModelViewSet):
         user = request.user
         user.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
+
+    @action(detail=False, methods=['GET', 'PUT', 'PATCH'], permission_classes=[IsAuthenticated])
+    def profile(self, request):
+        user = request.user
+
+        if request.method == 'GET':
+            # View profile
+            serializer = self.get_serializer(user)
+            return Response(serializer.data)
+
+        elif request.method in ['PUT', 'PATCH']:
+            # Update profile
+            partial = request.method == 'PATCH'
+            serializer = self.get_serializer(user, data=request.data, partial=partial)
+            serializer.is_valid(raise_exception=True)
+            serializer.save()
+
+            return Response({
+                'user': serializer.data,
+                'message': 'Profile updated successfully'
+            })
 
 
 class LoginView(generics.GenericAPIView):
@@ -74,6 +92,6 @@ class LoginView(generics.GenericAPIView):
                 'email': user.email
             }
         }, status=status.HTTP_200_OK)
-        
 
-       
+
+

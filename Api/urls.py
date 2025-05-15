@@ -29,7 +29,7 @@ from api import views
 from users.views import UserViewSet, LoginView  # Correct import path
 
 router = DefaultRouter()
-router.register(r'users', UserViewSet, basename='user')
+router.register('users', UserViewSet, basename='user')
 
 urlpatterns = [
     path('admin/', admin.site.urls),
