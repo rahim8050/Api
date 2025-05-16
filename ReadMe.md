@@ -62,13 +62,15 @@ http://localhost:8000/api/users/
 ```
 bash
 http://localhost:8000/api/users/profile/
+
+```
+``` json
 {
   "_id": "507f1f77bcf86cd799439011",
   "name": "John Doe",
   "email": "john@example.com",
   "createdAt": "2025-05-16T05:20:00.000Z"
 }
-```
 - Update Profile [Patch]
 ```
 bash 
