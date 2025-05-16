@@ -33,11 +33,13 @@ A simple RESTful API for creating and managing user data with full CRUD (Create,
 pip install djangorestframework-simplejwt
 ```
 
-Set up the database:
-Ensure [your database] is running.
-Run migrations 
-Start the server:
+## Set up the database:
+- Ensure [your database] is running.
+- Run migrations 
+-Start the server
+```bash
 python manage.py runserver
+```
 
 
 
