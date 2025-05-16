@@ -68,7 +68,7 @@ http://localhost:8000/api/users/profile/
 bash 
 http://localhost:8000/api/users/profile/
 ```
-- Change Password
+- Change Password [Post]
 ```
 bash 
 http://localhost:8000/api/users/change_password/
