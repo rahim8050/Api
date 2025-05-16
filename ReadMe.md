@@ -58,6 +58,13 @@ http://127.0.0.1:8000/login
 bash
 http://localhost:8000/api/users/
 ```
+``` json
+{
+  "email": "test@t.com",
+  "first_name": "Test",
+  "last_name": "Test_L"
+}
+```
 - Profile [Get]
 ```
 bash
@@ -66,10 +73,12 @@ http://localhost:8000/api/users/profile/
 ```
 ``` json
 {
-  "_id": "507f1f77bcf86cd799439011",
-  "name": "John Doe",
-  "email": "john@example.com",
-  "createdAt": "2025-05-16T05:20:00.000Z"
+  "id": 5,
+  "email": "test@t.com",
+  "first_name": "Test",
+  "last_name": "TTT",
+  "is_staff": false,
+  "is_active": true
 }
 ```
 
@@ -78,12 +87,30 @@ http://localhost:8000/api/users/profile/
 bash 
 http://localhost:8000/api/users/profile/
 ```
+``` json
+{
+  "user": {
+    "id": 5,
+    "email": "test@t.com",
+    "first_name": "Test",
+    "last_name": "TTTy",
+    "is_staff": false,
+    "is_active": true
+  },
+  "message": "Profile updated successfully"
+}
+```
 - Change Password [Post]
 ```
 bash 
 http://localhost:8000/api/users/change_password/
 ```
-## Example usage
+```json
+{
+  "status": "password changed"
+}
+```
+
 
 
 
