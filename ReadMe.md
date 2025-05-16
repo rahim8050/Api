@@ -53,6 +53,20 @@ python manage.py runserver
 bash
 http://127.0.0.1:8000/login
 ```
+### Response
+```
+{
+  "status": "success",
+  "tokens": {
+    "refresh": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoicmVmcmVzaCIsImV4cCI6MTc0NzQ3NjMwMSwiaWF0IjoxNzQ3Mzg5OTAxLCJqdGkiOiIwNmEwOGI3ODQ5M2I0ZTU2YTZmZTE5MWY2N2ZmNzgwZCIsInVzZXJfaWQiOjV9.I4g9o3Ndv_viQPZcVTil2HHycVhxzlurMIOqoVMwFBM",
+    "access": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzUyNTczOTAxLCJpYXQiOjE3NDczODk5MDEsImp0aSI6IjQzODRhMDdmMzFmMzQ1NTlhMzk4ZmVmZGZmMzIwZjliIiwidXNlcl9pZCI6NX0.AI0S9Rh2WfuIcGmlpMoFKaLtAHcd3TO1HUWIHsC79B8"
+  },
+  "user": {
+    "id": 5,
+    "email": "test@t.com"
+  }
+}
+```
 - Add Users [Post] 
 ```
 bash
