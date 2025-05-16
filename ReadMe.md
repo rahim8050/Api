@@ -128,16 +128,12 @@ http://localhost:8000/api/users/change_password/
   "status": "password changed"
 }
 ```
+- Delete User [Delete]
+``` bash
+http://127.0.0.1:8000/api/users/delete_me/
 
+```
+### Response
+```json
 
-
-
-
-
-
-
-
-
-
-
-
+```
