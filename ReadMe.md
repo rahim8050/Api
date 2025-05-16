@@ -72,6 +72,7 @@ http://127.0.0.1:8000/login
 bash
 http://localhost:8000/api/users/
 ```
+### Response
 ``` json
 {
   "email": "test@t.com",
@@ -85,6 +86,7 @@ bash
 http://localhost:8000/api/users/profile/
 
 ```
+### Response
 ``` json
 {
   "id": 5,
@@ -101,6 +103,7 @@ http://localhost:8000/api/users/profile/
 bash 
 http://localhost:8000/api/users/profile/
 ```
+### Response
 ``` json
 {
   "user": {
@@ -119,6 +122,7 @@ http://localhost:8000/api/users/profile/
 bash 
 http://localhost:8000/api/users/change_password/
 ```
+### Response
 ```json
 {
   "status": "password changed"
