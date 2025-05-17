@@ -51,7 +51,7 @@ python manage.py runserver
 - login user [Post]
 ```
 bash
-http://127.0.0.1:8000/login
+http://127.0.0.1:8000/login/
 ```
 ### Response
 ```
@@ -135,5 +135,7 @@ http://127.0.0.1:8000/api/users/delete_me/
 ```
 ### Response
 ```json
-
+{
+  "status": " user deleted successfully"
+}
 ```

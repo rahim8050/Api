@@ -44,7 +44,8 @@ class UserViewSet(viewsets.ModelViewSet):
     def delete_me(self, request):
         user = request.user
         user.delete()
-        return Response(status=status.HTTP_204_NO_CONTENT)
+        return Response({"status": " user deleted successfully"}, status=status.HTTP_200_OK)
+        # return Response(status=status.HTTP_204_NO_CONTENT)
 
     @action(detail=False, methods=['GET', 'PUT', 'PATCH'], permission_classes=[IsAuthenticated])
     def profile(self, request):
