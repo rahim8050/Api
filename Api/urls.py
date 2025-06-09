@@ -25,7 +25,7 @@ from django.contrib import admin
 from django.urls import path, include
 from rest_framework.routers import DefaultRouter
 
-from api import views
+# from api import views
 from users.views import UserViewSet, LoginView  # Correct import path
 
 router = DefaultRouter()
